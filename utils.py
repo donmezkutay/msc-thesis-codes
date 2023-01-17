@@ -1,9 +1,9 @@
-from shapely.geometry import mapping
+#from shapely.geometry import mapping
 
 import xarray as xr
 import numpy as np
-import geopandas as gpd
-import cartopy
+#import geopandas as gpd
+#import cartopy
 
 def assign_proj_to_model(dt_model):
     
