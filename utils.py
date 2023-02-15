@@ -104,3 +104,11 @@ def get_proj_info_model():
                                    )
     
     return proj_model
+
+def clip_to_city(data, shapefile):
+    
+    clipped = data.rio.clip(shapefile.geometry.apply(mapping),
+                            shapefile.crs, all_touched=True, 
+                            invert=False, from_disk=True)
+    
+    return clipped
