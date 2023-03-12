@@ -13,7 +13,7 @@ def assign_proj_to_model(dt_model):
                           semiminor_axis=6370000)
     
     # projection info
-    dt_proj = xr.open_dataset(fr'data/lffd2100123118.nc')
+    dt_proj = xr.open_dataset(fr'/mnt/e/JupyterLab/Yuksek_Lisans/msc_thesis_data/data/lffd2100123118.nc')
     
     # fetch model projection info
     rotated_pole = dt_proj['rotated_pole']
@@ -90,7 +90,7 @@ def get_proj_info_model():
                           semiminor_axis=6370000)
     
     # projection info
-    dt_proj = xr.open_dataset(fr'data/lffd2100123118.nc')
+    dt_proj = xr.open_dataset(fr'/mnt/e/JupyterLab/Yuksek_Lisans/msc_thesis_data/data/lffd2100123118.nc')
     
     # fetch model projection info
     rotated_pole = dt_proj['rotated_pole']
