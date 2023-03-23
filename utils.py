@@ -1,8 +1,10 @@
 from shapely.geometry import mapping
+from cartopy.feature import ShapelyFeature
 
 import xarray as xr
 import numpy as np
 import geopandas as gpd
+import cartopy.io.shapereader as shpreader 
 import cartopy
 
 def assign_proj_to_model(dt_model):
@@ -112,3 +114,34 @@ def clip_to_city(data, shapefile):
                             invert=False, from_disk=True)
     
     return clipped
+
+def plot_geographic_features(axs, graphic_no):
+    
+    # shapefile
+    # External complementary shapefiles
+    shpfilename = shpreader.natural_earth(resolution='10m',
+                                          category='cultural',
+                                          name='admin_0_countries')
+    cts = ['Syria', 'Iraq', 'Iran',
+           'Azerbaijan', 'Armenia',
+           'Russia', 'Georgia', 'Bulgaria',
+           'Greece', 'Cyprus', 'Northern Cyprus']
+
+    # add external shapefile geometries
+    for country in shpreader.Reader(shpfilename).records():
+
+        if country.attributes['ADMIN'] in cts:
+
+            count_shp = country.geometry
+            for i in range(graphic_no):
+                axs[i].add_geometries([count_shp], cartopy.crs.PlateCarree(),
+                                  facecolor='none', edgecolor = '#b0b3b8',
+                                  linewidth = 0.4, zorder = 21,)
+
+        elif country.attributes['ADMIN'] == 'Turkey':
+            count_shp = country.geometry
+            for i in range(graphic_no):
+                axs[i].add_geometries([count_shp], cartopy.crs.PlateCarree(),
+                                  facecolor='none', edgecolor = '#3a404a',
+                                  linewidth = 0.9, zorder = 22,
+                                     )
