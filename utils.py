@@ -130,15 +130,15 @@ def plot_geographic_features(axs, graphic_no):
     # add external shapefile geometries
     for country in shpreader.Reader(shpfilename).records():
 
-        if country.attributes['ADMIN'] in cts:
+        #if country.attributes['ADMIN'] in cts:
+#
+        #    count_shp = country.geometry
+        #    for i in range(graphic_no):
+        #        axs[i].add_geometries([count_shp], cartopy.crs.PlateCarree(),
+        #                          facecolor='none', edgecolor = '#b0b3b8',
+        #                          linewidth = 0.4, zorder = 21,)
 
-            count_shp = country.geometry
-            for i in range(graphic_no):
-                axs[i].add_geometries([count_shp], cartopy.crs.PlateCarree(),
-                                  facecolor='none', edgecolor = '#b0b3b8',
-                                  linewidth = 0.4, zorder = 21,)
-
-        elif country.attributes['ADMIN'] == 'Turkey':
+        if country.attributes['ADMIN'] == 'Turkey':
             count_shp = country.geometry
             for i in range(graphic_no):
                 axs[i].add_geometries([count_shp], cartopy.crs.PlateCarree(),
